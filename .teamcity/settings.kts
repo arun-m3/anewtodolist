@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
@@ -47,6 +48,10 @@ object Build : BuildType({
             id = "Maven2"
             goals = "clean package"
             runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+        script {
+            id = "simpleRunner"
+            scriptContent = "whoami"
         }
     }
 
